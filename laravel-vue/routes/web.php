@@ -17,4 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//Rota para página Inicial após Login
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Rota para os produtoss
+Route::get('/produtos', 'ProdutoController@index');

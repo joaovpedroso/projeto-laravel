@@ -29,7 +29,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/home') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -65,6 +65,11 @@
                                         </form>
                                     </li>
                                 </ul>
+                            </li>
+                            <li class="item">
+                                <a href="/produtos">
+                                    Produtos
+                                </a>
                             </li>
                         @endguest
                     </ul>
