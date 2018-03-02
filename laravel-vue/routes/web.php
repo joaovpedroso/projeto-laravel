@@ -20,5 +20,10 @@ Auth::routes();
 //Rota para página Inicial após Login
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Rota para os produtoss
-Route::get('/produtos', 'ProdutoController@index');
+//DEFINIR UM GRUPO DE ROTAS PROTEGIDO PELO LOGIN NO SISTEMA
+Route::middleware('auth')->prefix('admin')->namespace('Admin')->group( function(){
+    
+    //Rota para os produtoss
+    Route::resource('produtos', 'ProdutosController');
+    
+});

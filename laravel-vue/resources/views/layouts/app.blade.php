@@ -67,7 +67,7 @@
                                 </ul>
                             </li>
                             <li class="item">
-                                <a href="/produtos">
+                                <a href="{{route('produtos.index')}}">
                                     Produtos
                                 </a>
                             </li>
