@@ -25,5 +25,6 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->group( function(
     
     //Rota para os produtoss
     Route::resource('produtos', 'ProdutosController');
+    Route::resource('usuarios', 'UsuariosController');
     
 });

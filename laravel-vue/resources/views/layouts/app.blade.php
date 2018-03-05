@@ -66,11 +66,6 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="item">
-                                <a href="{{route('produtos.index')}}">
-                                    Produtos
-                                </a>
-                            </li>
                         @endguest
                     </ul>
                 </div>

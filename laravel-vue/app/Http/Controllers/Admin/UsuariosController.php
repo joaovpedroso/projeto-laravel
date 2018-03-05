@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Produto;
+use App\User;
+use Illuminate\Validation\Rule;
 
-class ProdutosController extends Controller
+class UsuariosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +18,12 @@ class ProdutosController extends Controller
     {
         $listaCaminho = json_encode([
             ["titulo"=>"Home","url"=>route('home')],
-            ["titulo"=>"Lista de Produtos","url"=>""]
+            ["titulo"=>"Lista de Usuários","url"=>""]
         ]);
         
-        $listaProdutos = Produto::select('id','nome','valor')->paginate(5);
+        $listaModelo = User::select('id','name','email')->paginate(5);
         
-        return view('admin.produtos.index', compact('listaCaminho', 'listaProdutos'));
+        return view('admin.usuarios.index', compact('listaCaminho', 'listaModelo'));
     }
 
     /**
@@ -43,26 +44,28 @@ class ProdutosController extends Controller
      */
     public function store(Request $request)
     {
-        
-        //DD -> Var Dump
-        //dd($request->all());
         //Receber os parametros
         $data = $request->all();
         
+        //validar os dados informados
         $validacao = \Validator::make($data, [
-            "nome" => "required",
-            "valor"=> "required"
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
         ]);
         
         if( $validacao->fails() ){
             return redirect()->back()->withErrors($validacao)->withInput();
         }
         
+        //Criptografar a senha informada
+        $data['password'] = bcrypt($data['password']);
+        
         //Salvar os dados definidos no FIllable
-        Produto::create($data);
+        User::create($data);
+        
         //Redirecionar para a pagina que realizou a requisição
         return redirect()->back();
-        
     }
 
     /**
@@ -73,7 +76,7 @@ class ProdutosController extends Controller
      */
     public function show($id)
     {
-        return Produto::find($id);
+        return User::find($id);
     }
 
     /**
@@ -96,24 +99,35 @@ class ProdutosController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        
         //Receber os parametros
         $data = $request->all();
         
-        $validacao = \Validator::make($data, [
-            "nome" => "required",
-            "valor"=> "required"
-        ]);
+        if( isset($data['password']) && $data['password'] != "" ){
+            
+            $validacao = \Validator::make($data, [
+                'name' => 'required|string|max:255',
+                'email' => ['required','string','email','max:255', Rule::unique('users')->ignore($id) ],                
+                'password' => 'required|string|min:6',
+            ]);
+            //Criptografar a senha informada
+            $data['password'] = bcrypt($data['password']);
+        }else {
+            $validacao = \Validator::make($data, [
+                'name' => 'required|string|max:255',
+                'email' => ['required','string','email','max:255', Rule::unique('users')->ignore($id) ]            
+            ]);
+            unset($data['password']);
+        }
         
         if( $validacao->fails() ){
             return redirect()->back()->withErrors($validacao)->withInput();
         }
         
         //Salvar os dados definidos no FIllable
-        Produto::find($id)->update($data);
+        User::find($id)->update($data);
         //Redirecionar para a pagina que realizou a requisição
         return redirect()->back();
-        
     }
 
     /**
@@ -124,7 +138,7 @@ class ProdutosController extends Controller
      */
     public function destroy($id)
     {
-        Produto::find($id)->delete();
+        User::find($id)->delete();
         //Redirecionar para a pagina que realizou a requisição
         return redirect()->back();
     }

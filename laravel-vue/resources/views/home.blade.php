@@ -14,7 +14,7 @@
                     </div>
                     
                     <div class="col-md-4">
-                        <caixa quantidade="19" titulo="Usuarios" url="/usuarios" cor="lightblue" icone="ion ion-person-stalker"></caixa>
+                        <caixa quantidade="19" titulo="Usuarios" url="{{route('usuarios.index')}}" cor="lightblue" icone="ion ion-person-stalker"></caixa>
                     </div>
                     
                     <div class="col-md-4">
