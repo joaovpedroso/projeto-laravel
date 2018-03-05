@@ -18,7 +18,7 @@
                     </div>
                     
                     <div class="col-md-4">
-                        <caixa quantidade="50" titulo="Vendas" url="/vendas" cor="red" icone="fa fa-shopping-cart"></caixa>
+                        <caixa quantidade="50" titulo="Contas" url="{{route('contas.index')}}" cor="red" icone="fa fa-shopping-cart"></caixa>
                     </div>
                     
                 </div>
