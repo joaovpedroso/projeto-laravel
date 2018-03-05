@@ -42,3 +42,9 @@
 - ATUALIZAÇÕES EM 2º PLANO
 	*NPM WATCH
 
+
+* VUEx = Biblioteca Externa para troca de informações entre componentes do VueJs
+	-Instalação: npm i vuex
+
+* Tradução de Erros Laravel 5.5
+	-https://github.com/enniosousa/laravel-5.5-pt-BR-localization
