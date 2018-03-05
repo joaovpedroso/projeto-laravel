@@ -124,6 +124,8 @@ class ProdutosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Produto::find($id)->delete();
+        //Redirecionar para a pagina que realizou a requisição
+        return redirect()->back();
     }
 }

@@ -24,7 +24,7 @@
                 v-bind:titulos="['ID','Nome','Valor']"
                 v-bind:itens="{{$listaProdutos}}"
                 ordem="asc" ordemcol="1"
-                criar="#criar" detalhe="/admin/produtos/" editar="/admin/produtos/" deletar="#deletar" token="132"
+                criar="#criar" detalhe="/admin/produtos/" editar="/admin/produtos/" deletar="/admin/produtos/" token="{{ csrf_token() }}"
                 modal="sim"
                 
             ></tabela-lista>
@@ -72,8 +72,8 @@
     
     <modal nome="detalhe" titulo="Detalhe do Produto">
 
-        <p>Produto: @{{$store.state.item.titulo}}</p>
-        <p>Valor: R$ @{{$store.state.item.valor}} </p>
+        <p><b>Produto: </b>@{{$store.state.item.nome}}</p>
+        <p><b>Valor: </b>R$ @{{$store.state.item.valor}} </p>
 
     </modal>
     

@@ -43908,7 +43908,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['titulos', 'itens', 'ordem', 'ordemcol', 'criar', 'detalhe', 'editar', 'deletar', 'token', 'modal'],
@@ -44085,7 +44084,7 @@ var render = function() {
                           {
                             attrs: {
                               id: index,
-                              action: _vm.deletar,
+                              action: _vm.deletar + item.id,
                               method: "post"
                             }
                           },
