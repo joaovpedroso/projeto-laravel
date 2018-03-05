@@ -4,6 +4,7 @@
 @section('content')
     <pagina tamanho="12">
         <painel titulo="Lista de Produtos">
+            <caminho></caminho>
             <tabela-lista 
                 v-bind:titulos="['ID','Nome','Valor']"
                 v-bind:itens="[ [1,'Curso Php OO',2.50], [2,'Curso Laravel Vue JS',29.90]]"
