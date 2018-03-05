@@ -20,7 +20,7 @@ class ProdutosController extends Controller
             ["titulo"=>"Lista de Produtos","url"=>""]
         ]);
         
-        $listaProdutos = json_encode(Produto::select('id','nome','valor')->get());
+        $listaProdutos = Produto::select('id','nome','valor')->paginate(2);
         
         return view('admin.produtos.index', compact('listaCaminho', 'listaProdutos'));
     }
