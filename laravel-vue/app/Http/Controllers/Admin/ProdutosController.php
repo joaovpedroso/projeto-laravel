@@ -73,7 +73,7 @@ class ProdutosController extends Controller
      */
     public function show($id)
     {
-        //
+        return Produto::find($id);
     }
 
     /**
@@ -96,7 +96,24 @@ class ProdutosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        //Receber os parametros
+        $data = $request->all();
+        
+        $validacao = \Validator::make($data, [
+            "nome" => "required",
+            "valor"=> "required"
+        ]);
+        
+        if( $validacao->fails() ){
+            return redirect()->back()->withErrors($validacao)->withInput();
+        }
+        
+        //Salvar os dados definidos no FIllable
+        Produto::find($id)->update($data);
+        //Redirecionar para a pagina que realizou a requisição
+        return redirect()->back();
+        
     }
 
     /**

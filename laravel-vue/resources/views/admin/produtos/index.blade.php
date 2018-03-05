@@ -24,7 +24,7 @@
                 v-bind:titulos="['ID','Nome','Valor']"
                 v-bind:itens="{{$listaProdutos}}"
                 ordem="asc" ordemcol="1"
-                criar="#criar" detalhe="#detalhe" editar="#editar" deletar="#deletar" token="132"
+                criar="#criar" detalhe="/admin/produtos/" editar="/admin/produtos/" deletar="#deletar" token="132"
                 modal="sim"
                 
             ></tabela-lista>
@@ -53,15 +53,15 @@
     </modal>
     
     <modal nome="editar" titulo="Editar Produto">
-        <formulario id="formEditar" css="" action="#" method="put" enctype="" token="1010">
+        <formulario id="formEditar" css="" v-bind:action="'/admin/produtos/'+$store.state.item.id" method="put" enctype="" token="{{ csrf_token() }}">
             
             <div class="form-group">
                 <label for="nome">Nome</label>
-                <input type="text" class="form-control" id="nome" name="nome" v-model="$store.state.item.titulo" value="{{old('nome')}}" placeholder="Nome" required>
+                <input type="text" class="form-control" id="nome" name="nome" v-model="$store.state.item.nome" placeholder="Nome" required>
             </div>
             <div class="form-group">
                 <label for="valor">Valor R$</label>
-                <input type="text" class="form-control" id="valor" name="valor" v-model="$store.state.item.valor" placeholder="R$" value="{{old('valor')}}" required>
+                <input type="text" class="form-control" id="valor" name="valor" v-model="$store.state.item.valor" placeholder="R$" required>
             </div>
             
         </formulario>
