@@ -3,7 +3,10 @@
 
 @section('content')
 <pagina tamanho="10">
+        
             <painel titulo="Navegação">
+                <caminho v-bind:lista="{{$listaCaminho}}"></caminho>
+                
                 <div class="row">
                     
                     <div class="col-md-4">

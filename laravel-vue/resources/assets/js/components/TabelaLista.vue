@@ -1,9 +1,12 @@
 <template>
     <div>
     
-       
         <div class="form-inline">
-            <a v-if="criar" v-bind:href="criar">Novo Cadastro</a>
+            <a v-if="criar && !modal" v-bind:href="criar">Novo Cadastro</a>
+            
+            <!--LINK DO MODAL -->
+            <modal-link v-if="criar && modal" tipo="button" nome="adicionar" titulo="Cadastrar" css="" ></modal-link>
+
             <div class="form-group pull-right">
                 <input type="search" class="form-control" placeholder="Buscar" v-model="buscar">
             </div> 
@@ -26,20 +29,30 @@
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" v-bind:value="token">
 
-                            <a v-if="detalhe" v-bind:href="detalhe">+Detalhes |</a>
-                            <a v-if="editar" v-bind:href="editar"> Editar |</a> 
-                            <a href="#" v-on:click="executaForm(index)"> Deletar</a>
+                            <a v-if="detalhe && !modal" v-bind:href="detalhe">+Detalhes |</a>
+                            <modal-link v-if="detalhe && modal" v-bind:item="item" tipo="button" nome="detalhe" titulo="+ Detalhes |" css="" ></modal-link>
+                            
+                            <a v-if="editar && !modal" v-bind:href="editar"> Editar |</a>
+                            <modal-link v-if="editar && modal" v-bind:item="item" tipo="button" nome="editar" titulo="Editar |" css="" ></modal-link>
+
+                            <a href="#" v-on:click="executaForm(index)" class="btn btn-danger"> Deletar</a>
                         </form>
                         
                         <span v-if="!token">
-                            <a v-if="detalhe" v-bind:href="detalhe">+Detalhes |</a>
-                            <a v-if="editar" v-bind:href="editar"> Editar |</a> 
-                            <a v-if="deletar" v-bind:href="deletar"> Deletar</a>
+                             <a v-if="detalhe && !modal" v-bind:href="detalhe">+Detalhes |</a>
+                            <modal-link v-if="detalhe && modal" v-bind:item="item" tipo="button" nome="detalhe" titulo="+ Detalhes |" css="" ></modal-link>
+
+                            <a v-if="editar && !modal" v-bind:href="editar"> Editar |</a>
+                            <modal-link v-if="editar && modal" tipo="button" nome="editar" titulo="Editar |" css="" ></modal-link>
+                            <a v-if="deletar" v-bind:href="deletar" class="btn btn-danger"> Deletar</a>
                         </span>
 
                         <span v-if="token && !deletar">
-                            <a v-if="detalhe" v-bind:href="detalhe">+Detalhes |</a>
-                            <a v-if="editar" v-bind:href="editar"> Editar</a>
+                             <a v-if="detalhe && !modal" v-bind:href="detalhe">+Detalhes |</a>
+                            <modal-link v-if="detalhe && modal" v-bind:item="item" tipo="button" nome="detalhe" titulo="+ Detalhes |" css="" ></modal-link>
+
+                            <a v-if="editar && !modal" v-bind:href="editar"> Editar </a>
+                            <modal-link v-if="editar && modal" tipo="button" nome="editar" titulo="Editar |" css="" ></modal-link>
                         </span>
                         
                     </td>
@@ -51,7 +64,7 @@
 
 <script>
     export default {
-        props:['titulos','itens','ordem','ordemcol','criar','detalhe','editar','deletar','token'],
+        props:['titulos','itens','ordem','ordemcol','criar','detalhe','editar','deletar','token','modal'],
         data: function(){
             return {
                 buscar: '',
@@ -84,32 +97,33 @@
 
                 if( ordem == "asc" ){
                     this.itens.sort( function(a,b){
-                        if( a[ordemCol] > b[ordemCol]  ){ return 1; }
-                        if( a[ordemCol] < b[ordemCol]  ){ return -1; }
+                        if( Object.values(a)[ordemCol] > Object.values(b)[ordemCol]  ){ return 1; }
+                        if( Object.values(a)[ordemCol] < Object.values(b)[ordemCol]  ){ return -1; }
                         return 0;
                     } );
                 } else {
                     this.itens.sort( function(a,b){
-                        if( a[ordemCol] < b[ordemCol]  ){ return 1; }
-                        if( a[ordemCol] > b[ordemCol]  ){ return -1; }
+                        if( Object.values(a)[ordemCol] < Object.values(b)[ordemCol]  ){ return 1; }
+                        if( Object.values(a)[ordemCol] > Object.values(b)[ordemCol]  ){ return -1; }
                         return 0;
                     } );
                 }
 
-                
+                if(this.buscar){
+                    return this.itens.filter(res => {
+                        res = Object.values(res);
 
-                return this.itens.filter(res => {
-                    for( let k = 0; k < res.length; k++){
-                        if( ( res[k] + "" ).toLowerCase().indexOf( this.buscar.toLowerCase() ) >= 0 ) {
-                            return true;
+                        for( let k = 0; k < res.length; k++){
+                            if( ( res[k] + "" ).toLowerCase().indexOf( this.buscar.toLowerCase() ) >= 0 ) {
+                                return true;
+                            }
                         }
-                    }
-                    
-                    return false;
 
-                });
+                        return false;
 
-                
+                    });
+                }
+
                 return this.itens;
             }
         }

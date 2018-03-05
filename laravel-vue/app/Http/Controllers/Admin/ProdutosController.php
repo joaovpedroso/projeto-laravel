@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Produto;
 
 class ProdutosController extends Controller
 {
@@ -14,7 +15,14 @@ class ProdutosController extends Controller
      */
     public function index()
     {
-        return view('admin.produtos.index');
+        $listaCaminho = json_encode([
+            ["titulo"=>"Home","url"=>route('home')],
+            ["titulo"=>"Lista de Produtos","url"=>""]
+        ]);
+        
+        $listaProdutos = json_encode(Produto::select('id','nome','valor')->get());
+        
+        return view('admin.produtos.index', compact('listaCaminho', 'listaProdutos'));
     }
 
     /**
@@ -35,7 +43,15 @@ class ProdutosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //DD -> Var Dump
+        //dd($request->all());
+        //Receber os parametros
+        $data = $request->all();
+        //Salvar os dados definidos no FIllable
+        Produto::create($data);
+        //Redirecionar para a pagina que realizou a requisição
+        return redirect()->back();
+        
     }
 
     /**
