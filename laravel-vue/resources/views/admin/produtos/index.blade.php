@@ -5,6 +5,15 @@
     <!-- Pagina -->
     <pagina tamanho="12">
         
+        <!-- Mostra Mensagem de Erros -->
+        @if($errors->all())
+        <div class="alert alert-danger text-center">
+            @foreach($errors->all() as $key => $value)
+            <li><strong>{{$value}}</strong></li>
+            @endforeach
+        </div>
+        @endif
+        
         <!-- Painel -->
         <painel titulo="Lista de Produtos">
             <!-- BREADCRUMB -->
@@ -28,11 +37,11 @@
 
             <div class="form-group">
                 <label for="nome">Nome</label>
-                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" value="{{old('nome')}}" required>
             </div>
             <div class="form-group">
                 <label for="valor">Valor R$</label>
-                <input type="text" class="form-control" id="valor" name="valor" placeholder="R$">
+                <input type="text" class="form-control" id="valor" name="valor" placeholder="R$" value="{{old('valor')}}" required>
             </div>
 
         </formulario>
@@ -48,11 +57,11 @@
             
             <div class="form-group">
                 <label for="nome">Nome</label>
-                <input type="text" class="form-control" id="nome" name="nome" v-model="$store.state.item.titulo" placeholder="Nome">
+                <input type="text" class="form-control" id="nome" name="nome" v-model="$store.state.item.titulo" value="{{old('nome')}}" placeholder="Nome" required>
             </div>
             <div class="form-group">
                 <label for="valor">Valor R$</label>
-                <input type="text" class="form-control" id="valor" name="valor" v-model="$store.state.item.valor" placeholder="R$">
+                <input type="text" class="form-control" id="valor" name="valor" v-model="$store.state.item.valor" placeholder="R$" value="{{old('valor')}}" required>
             </div>
             
         </formulario>

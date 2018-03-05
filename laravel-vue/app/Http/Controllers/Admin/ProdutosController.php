@@ -43,10 +43,21 @@ class ProdutosController extends Controller
      */
     public function store(Request $request)
     {
+        
         //DD -> Var Dump
         //dd($request->all());
         //Receber os parametros
         $data = $request->all();
+        
+        $validacao = \Validator::make($data, [
+            "nome" => "required",
+            "valor"=> "required"
+        ]);
+        
+        if( $validacao->fails() ){
+            return redirect()->back()->withErrors($validacao)->withInput();
+        }
+        
         //Salvar os dados definidos no FIllable
         Produto::create($data);
         //Redirecionar para a pagina que realizou a requisição
