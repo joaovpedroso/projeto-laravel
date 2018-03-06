@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rule;
 use App\Conta;
 
 class ContasController extends Controller
@@ -115,7 +116,7 @@ class ContasController extends Controller
     {
         //Receber dados do formulário
         $data = $request->all();
-        
+               
         //Realizar a validação dos dados informados
         if( isset( $data['pagamento'] ) && $data['pagamento'] != "" ){
             

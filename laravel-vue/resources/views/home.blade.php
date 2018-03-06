@@ -10,15 +10,15 @@
                 <div class="row">
                     
                     <div class="col-md-4">
-                        <caixa quantidade="10" titulo="Produtos" url="{{route('produtos.index')}}" cor="orange" icone="ion ion-pie-graph"></caixa>
+                        <caixa quantidade="{{$produtosCount}}" titulo="Produtos" url="{{route('produtos.index')}}" cor="orange" icone="ion ion-pie-graph"></caixa>
                     </div>
                     
                     <div class="col-md-4">
-                        <caixa quantidade="19" titulo="Usuarios" url="{{route('usuarios.index')}}" cor="lightblue" icone="ion ion-person-stalker"></caixa>
+                        <caixa quantidade="{{$usuariosCount}}" titulo="Usuarios" url="{{route('usuarios.index')}}" cor="lightblue" icone="ion ion-person-stalker"></caixa>
                     </div>
                     
                     <div class="col-md-4">
-                        <caixa quantidade="50" titulo="Contas" url="{{route('contas.index')}}" cor="red" icone="fa fa-shopping-cart"></caixa>
+                        <caixa quantidade="{{$contasCount}}" titulo="Contas" url="{{route('contas.index')}}" cor="red" icone="fa fa-shopping-cart"></caixa>
                     </div>
                     
                 </div>

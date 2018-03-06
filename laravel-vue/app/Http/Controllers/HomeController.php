@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Produto;
+use App\User;
+use App\Conta;
 
 class HomeController extends Controller
 {
@@ -26,6 +29,11 @@ class HomeController extends Controller
          $listaCaminho = json_encode([
             ["titulo"=>"Home","url"=>""]
         ]);
-        return view('home', compact('listaCaminho'));
+         
+         $produtosCount = Produto::all()->count();
+         $usuariosCount = User::all()->count();
+         $contasCount = Conta::all()->count();
+         
+        return view('home', compact('listaCaminho', 'produtosCount','usuariosCount','contasCount'));
     }
 }

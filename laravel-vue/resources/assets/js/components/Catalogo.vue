@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container well text-center">
         <div class="row">
             <div v-bind:class="defineTamanho">
                 <slot></slot>
@@ -9,9 +9,9 @@
 </template>
 
 <script>
-    export default{
+    export default {
         props:['tamanho'],
-        computed:{
+        computed: {
             defineTamanho: function(){
                 if(this.tamanho >= 12){
                     return "col-md-12"
@@ -31,5 +31,8 @@
 </script>
 
 <style>
-
+    .well{
+        background-color: #fff;
+        border: 1px solid #fff;
+    }
 </style>

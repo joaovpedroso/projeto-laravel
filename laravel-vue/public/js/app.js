@@ -1431,6 +1431,8 @@ Vue.component('caminho', __webpack_require__(59));
 Vue.component('modal', __webpack_require__(62));
 Vue.component('modal-link', __webpack_require__(65));
 Vue.component('formulario', __webpack_require__(68));
+Vue.component('catalogo', __webpack_require__(81));
+Vue.component('item', __webpack_require__(84));
 
 var app = new Vue({
     el: '#app',
@@ -44853,6 +44855,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['titulos', 'itens', 'ordem', 'ordemcol', 'criar', 'detalhe', 'editar', 'deletar', 'token', 'modal'],
@@ -44984,235 +44988,237 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _c("table", { staticClass: "table table-striped table-hover" }, [
-      _c("thead", [
-        _c(
-          "tr",
-          [
-            _vm._l(_vm.titulos, function(titulo, index) {
-              return _c(
-                "th",
-                {
-                  staticStyle: { cursor: "pointer" },
-                  on: {
-                    click: function($event) {
-                      _vm.ordenaColuna(index)
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(titulo))]
-              )
-            }),
-            _vm._v(" "),
-            _vm.detalhe || _vm.editar || _vm.deletar
-              ? _c("th", [_vm._v("Ações")])
-              : _vm._e()
-          ],
-          2
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.lista, function(item, index) {
-          return _c(
+    _c("div", { staticClass: "table-responsive" }, [
+      _c("table", { staticClass: "table table-striped table-hover" }, [
+        _c("thead", [
+          _c(
             "tr",
             [
-              _vm._l(item, function(i) {
-                return _c("td", [_vm._v(_vm._s(i))])
+              _vm._l(_vm.titulos, function(titulo, index) {
+                return _c(
+                  "th",
+                  {
+                    staticStyle: { cursor: "pointer" },
+                    on: {
+                      click: function($event) {
+                        _vm.ordenaColuna(index)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(titulo))]
+                )
               }),
               _vm._v(" "),
               _vm.detalhe || _vm.editar || _vm.deletar
-                ? _c("td", [
-                    _vm.deletar && _vm.token
-                      ? _c(
-                          "form",
-                          {
-                            attrs: {
-                              id: index,
-                              action: _vm.deletar + item.id,
-                              method: "post"
-                            }
-                          },
-                          [
-                            _c("input", {
-                              attrs: {
-                                type: "hidden",
-                                name: "_method",
-                                value: "DELETE"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("input", {
-                              attrs: { type: "hidden", name: "_token" },
-                              domProps: { value: _vm.token }
-                            }),
-                            _vm._v(" "),
-                            _vm.detalhe && !_vm.modal
-                              ? _c("a", { attrs: { href: _vm.detalhe } }, [
-                                  _vm._v("+Detalhes |")
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.detalhe && _vm.modal
-                              ? _c("modal-link", {
-                                  attrs: {
-                                    item: item,
-                                    url: _vm.detalhe,
-                                    tipo: "button",
-                                    nome: "detalhe",
-                                    titulo: "+ Detalhes |",
-                                    css: ""
-                                  }
-                                })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.editar && !_vm.modal
-                              ? _c("a", { attrs: { href: _vm.editar } }, [
-                                  _vm._v(" Editar |")
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.editar && _vm.modal
-                              ? _c("modal-link", {
-                                  attrs: {
-                                    item: item,
-                                    url: _vm.editar,
-                                    tipo: "button",
-                                    nome: "editar",
-                                    titulo: "Editar |",
-                                    css: ""
-                                  }
-                                })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "btn btn-danger",
-                                attrs: { href: "#" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.executaForm(index)
-                                  }
-                                }
-                              },
-                              [_vm._v(" Deletar")]
-                            )
-                          ],
-                          1
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    !_vm.token
-                      ? _c(
-                          "span",
-                          [
-                            _vm.detalhe && !_vm.modal
-                              ? _c("a", { attrs: { href: _vm.detalhe } }, [
-                                  _vm._v("+Detalhes |")
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.detalhe && _vm.modal
-                              ? _c("modal-link", {
-                                  attrs: {
-                                    item: item,
-                                    url: _vm.detalhe,
-                                    tipo: "button",
-                                    nome: "detalhe",
-                                    titulo: "+ Detalhes |",
-                                    css: ""
-                                  }
-                                })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.editar && !_vm.modal
-                              ? _c("a", { attrs: { href: _vm.editar } }, [
-                                  _vm._v(" Editar |")
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.editar && _vm.modal
-                              ? _c("modal-link", {
-                                  attrs: {
-                                    tipo: "button",
-                                    item: item,
-                                    url: _vm.editar,
-                                    nome: "editar",
-                                    titulo: "Editar |",
-                                    css: ""
-                                  }
-                                })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.deletar
-                              ? _c(
-                                  "a",
-                                  {
-                                    staticClass: "btn btn-danger",
-                                    attrs: { href: _vm.deletar }
-                                  },
-                                  [_vm._v(" Deletar")]
-                                )
-                              : _vm._e()
-                          ],
-                          1
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.token && !_vm.deletar
-                      ? _c(
-                          "span",
-                          [
-                            _vm.detalhe && !_vm.modal
-                              ? _c("a", { attrs: { href: _vm.detalhe } }, [
-                                  _vm._v("+Detalhes |")
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.detalhe && _vm.modal
-                              ? _c("modal-link", {
-                                  attrs: {
-                                    item: item,
-                                    url: _vm.detalhe,
-                                    tipo: "button",
-                                    nome: "detalhe",
-                                    titulo: "+ Detalhes |",
-                                    css: ""
-                                  }
-                                })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.editar && !_vm.modal
-                              ? _c("a", { attrs: { href: _vm.editar } }, [
-                                  _vm._v(" Editar ")
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.editar && _vm.modal
-                              ? _c("modal-link", {
-                                  attrs: {
-                                    tipo: "button",
-                                    item: item,
-                                    url: _vm.editar,
-                                    nome: "editar",
-                                    titulo: "Editar |",
-                                    css: ""
-                                  }
-                                })
-                              : _vm._e()
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  ])
+                ? _c("th", [_vm._v("Ações")])
                 : _vm._e()
             ],
             2
           )
-        })
-      )
+        ]),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.lista, function(item, index) {
+            return _c(
+              "tr",
+              [
+                _vm._l(item, function(i) {
+                  return _c("td", [_vm._v(_vm._s(i))])
+                }),
+                _vm._v(" "),
+                _vm.detalhe || _vm.editar || _vm.deletar
+                  ? _c("td", [
+                      _vm.deletar && _vm.token
+                        ? _c(
+                            "form",
+                            {
+                              attrs: {
+                                id: index,
+                                action: _vm.deletar + item.id,
+                                method: "post"
+                              }
+                            },
+                            [
+                              _c("input", {
+                                attrs: {
+                                  type: "hidden",
+                                  name: "_method",
+                                  value: "DELETE"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: { type: "hidden", name: "_token" },
+                                domProps: { value: _vm.token }
+                              }),
+                              _vm._v(" "),
+                              _vm.detalhe && !_vm.modal
+                                ? _c("a", { attrs: { href: _vm.detalhe } }, [
+                                    _vm._v("+Detalhes |")
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.detalhe && _vm.modal
+                                ? _c("modal-link", {
+                                    attrs: {
+                                      item: item,
+                                      url: _vm.detalhe,
+                                      tipo: "button",
+                                      nome: "detalhe",
+                                      titulo: "+ Detalhes |",
+                                      css: ""
+                                    }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.editar && !_vm.modal
+                                ? _c("a", { attrs: { href: _vm.editar } }, [
+                                    _vm._v(" Editar |")
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.editar && _vm.modal
+                                ? _c("modal-link", {
+                                    attrs: {
+                                      item: item,
+                                      url: _vm.editar,
+                                      tipo: "button",
+                                      nome: "editar",
+                                      titulo: "Editar |",
+                                      css: ""
+                                    }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "btn btn-danger",
+                                  attrs: { href: "#" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.executaForm(index)
+                                    }
+                                  }
+                                },
+                                [_vm._v(" Deletar")]
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.token
+                        ? _c(
+                            "span",
+                            [
+                              _vm.detalhe && !_vm.modal
+                                ? _c("a", { attrs: { href: _vm.detalhe } }, [
+                                    _vm._v("+Detalhes |")
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.detalhe && _vm.modal
+                                ? _c("modal-link", {
+                                    attrs: {
+                                      item: item,
+                                      url: _vm.detalhe,
+                                      tipo: "button",
+                                      nome: "detalhe",
+                                      titulo: "+ Detalhes |",
+                                      css: ""
+                                    }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.editar && !_vm.modal
+                                ? _c("a", { attrs: { href: _vm.editar } }, [
+                                    _vm._v(" Editar |")
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.editar && _vm.modal
+                                ? _c("modal-link", {
+                                    attrs: {
+                                      tipo: "button",
+                                      item: item,
+                                      url: _vm.editar,
+                                      nome: "editar",
+                                      titulo: "Editar |",
+                                      css: ""
+                                    }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.deletar
+                                ? _c(
+                                    "a",
+                                    {
+                                      staticClass: "btn btn-danger",
+                                      attrs: { href: _vm.deletar }
+                                    },
+                                    [_vm._v(" Deletar")]
+                                  )
+                                : _vm._e()
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.token && !_vm.deletar
+                        ? _c(
+                            "span",
+                            [
+                              _vm.detalhe && !_vm.modal
+                                ? _c("a", { attrs: { href: _vm.detalhe } }, [
+                                    _vm._v("+Detalhes |")
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.detalhe && _vm.modal
+                                ? _c("modal-link", {
+                                    attrs: {
+                                      item: item,
+                                      url: _vm.detalhe,
+                                      tipo: "button",
+                                      nome: "detalhe",
+                                      titulo: "+ Detalhes |",
+                                      css: ""
+                                    }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.editar && !_vm.modal
+                                ? _c("a", { attrs: { href: _vm.editar } }, [
+                                    _vm._v(" Editar ")
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.editar && _vm.modal
+                                ? _c("modal-link", {
+                                    attrs: {
+                                      tipo: "button",
+                                      item: item,
+                                      url: _vm.editar,
+                                      nome: "editar",
+                                      titulo: "Editar |",
+                                      css: ""
+                                    }
+                                  })
+                                : _vm._e()
+                            ],
+                            1
+                          )
+                        : _vm._e()
+                    ])
+                  : _vm._e()
+              ],
+              2
+            )
+          })
+        )
+      ])
     ])
   ])
 }
@@ -45849,6 +45855,293 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(87)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(82)
+/* template */
+var __vue_template__ = __webpack_require__(83)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Catalogo.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-9ddbc226", Component.options)
+  } else {
+    hotAPI.reload("data-v-9ddbc226", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 82 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['tamanho'],
+    computed: {
+        defineTamanho: function defineTamanho() {
+            if (this.tamanho >= 12) {
+                return "col-md-12";
+            }
+            if (this.tamanho <= 2) {
+                return "col-md-2 col-md-offset-4";
+            }
+            if (this.tamanho % 2 == 0) {
+                return "col-md-" + this.tamanho + " col-md-offset-" + (12 - this.tamanho) / 2;
+            } else {
+                return "col-md-" + (parseInt(this.tamanho) + 1) + " col-md-offset-" + (12 - (parseInt(this.tamanho) + 1)) / 2;
+            }
+            return "col-md-10 col-md-offset-1";
+        }
+    }
+});
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container well text-center" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { class: _vm.defineTamanho }, [_vm._t("default")], 2)
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-9ddbc226", module.exports)
+  }
+}
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(85)
+/* template */
+var __vue_template__ = __webpack_require__(86)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\item.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1c58436a", Component.options)
+  } else {
+    hotAPI.reload("data-v-1c58436a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 85 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['tamanho', 'titulo', 'valor', 'url'],
+    computed: {
+        defineTamanho: function defineTamanho() {
+            if (this.tamanho >= 12) {
+                return "col-md-12";
+            }
+            if (this.tamanho <= 2) {
+                return "col-md-2";
+            }
+            if (this.tamanho % 2 == 0) {
+                return "col-md-" + this.tamanho;
+            } else {
+                return "col-md-" + (parseInt(this.tamanho) + 1);
+            }
+            return "col-md-10";
+        }
+    }
+});
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { class: _vm.defineTamanho }, [
+    _c(
+      "div",
+      { staticClass: "thumbnail text-center" },
+      [
+        _vm._t("imagem"),
+        _vm._v(" "),
+        _c("div", { staticClass: "caption" }, [
+          _c("p", [_vm._v(_vm._s(_vm.titulo))]),
+          _vm._v(" "),
+          _c("p", [_vm._v("R$ " + _vm._s(_vm.valor))]),
+          _vm._v(" "),
+          _c("a", { staticClass: "btn btn-danger", attrs: { href: _vm.url } }, [
+            _vm._v("Comprar")
+          ])
+        ])
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1c58436a", module.exports)
+  }
+}
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(88);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(11)("4a977ed5", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9ddbc226\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Catalogo.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9ddbc226\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Catalogo.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(10)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.well{\n    background-color: #fff;\n    border: 1px solid #fff;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

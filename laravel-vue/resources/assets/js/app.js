@@ -37,6 +37,8 @@ Vue.component('caminho', require('./components/Caminho.vue'));
 Vue.component('modal', require('./components/modal/Modal.vue'));
 Vue.component('modal-link', require('./components/modal/ModalLink.vue'));
 Vue.component('formulario', require('./components/Formulario.vue'));
+Vue.component('catalogo', require('./components/Catalogo.vue'));
+Vue.component('item', require('./components/item.vue'));
 
 const app = new Vue({
     el: '#app',
