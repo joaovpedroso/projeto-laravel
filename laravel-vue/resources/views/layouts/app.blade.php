@@ -30,7 +30,8 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/home') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        Só Cursos
+                        <!--{{ config('app.name', 'Laravel') }} -->
                     </a>
                 </div>
 
