@@ -21,10 +21,10 @@
                        
             <!-- Lista de Registros -->
             <tabela-lista 
-                v-bind:titulos="['ID','Titulo','Descrição','Data']"
+                v-bind:titulos="['ID','Titulo','Descrição','Valor','Data']"
                 v-bind:itens="{{json_encode( $listaModelo )}}"
                 ordem="asc" ordemcol="1"
-                criar="#criar" detalhe="/admin/usuarios/" editar="/admin/usuarios/" deletar="/admin/usuarios/" token="{{ csrf_token() }}"
+                criar="#criar" detalhe="/admin/contas/" editar="/admin/contas/" deletar="/admin/contas/" token="{{ csrf_token() }}"
                 modal="sim"
                 
             ></tabela-lista>
@@ -36,21 +36,33 @@
         </painel>
     </pagina>
 
-    <modal nome="adicionar" titulo="Adicionar Usuário">
+    <modal nome="adicionar" titulo="Adicionar Conta">
         
-        <formulario id="formAdicionar" css="" action="{{route('usuarios.store')}}" method="post" enctype="" token="{{ csrf_token() }}">
+        <formulario id="formAdicionar" css="" action="{{route('contas.store')}}" method="post" enctype="" token="{{ csrf_token() }}">
 
             <div class="form-group">
-                <label for="name">Nome</label>
-                <input type="text" class="form-control" name="name" placeholder="Nome" value="{{old('name')}}" required>
+                <label for="titulo">Titulo</label>
+                <input type="text" class="form-control" name="titulo" placeholder="Nome da Conta" value="{{old('titulo')}}" required>
             </div>
+            
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" name="email" placeholder="exemplo@example.com" value="{{old('email')}}" required>
+                <label for="descricao">Descricao</label>
+                <textarea class="form-control" name="descricao" placeholder="Descreva Sobre a Conta" required>{{old('descricao')}}</textarea>
             </div>
+            
             <div class="form-group">
-                <label for="password">Senha</label>
-                <input type="password" class="form-control" name="password" placeholder="Informe a Senha" value="{{old('password')}}">
+                <label for="vencimento">Data de Vencimento</label>
+                <input type="date" class="form-control" name="vencimento" value="{{old('vencimento')}}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="pagamento">Data de Pagamento</label>
+                <input type="date" class="form-control" name="pagamento" value="{{old('pagamento')}}">
+            </div>
+            
+            <div class="form-group">
+                <label for="valor">Valor</label>
+                <input type="text" class="form-control" name="valor" placeholder="R$ 0,00" value="{{old('valor')}}" required>
             </div>
 
         </formulario>
@@ -61,20 +73,32 @@
 
     </modal>
     
-    <modal nome="editar" titulo="Editar Produto">
-        <formulario id="formEditar" css="" v-bind:action="'/admin/usuarios/'+$store.state.item.id" method="put" enctype="" token="{{ csrf_token() }}">
+    <modal nome="editar" titulo="Editar Conta">
+        <formulario id="formEditar" css="" v-bind:action="'/admin/contas/'+$store.state.item.id" method="put" enctype="" token="{{ csrf_token() }}">
             
             <div class="form-group">
-                <label for="name">Nome</label>
-                <input type="text" class="form-control" name="name" v-model="$store.state.item.name" placeholder="Nome" required>
+                <label for="titulo">Titulo</label>
+                <input type="text" class="form-control" name="titulo" v-model="$store.state.item.titulo" placeholder="Nome" required>
             </div>
+        
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" name="email" v-model="$store.state.item.email" placeholder="exemplo@example.com" required>
+                <label for="descricao">Descrição</label>
+                <textarea class="form-control" name="descricao" v-model="$store.state.item.descricao" placeholder="Descreva Sobre a Conta" required></textarea>
             </div>
+        
             <div class="form-group">
-                <label for="password">Senha</label>
-                <input type="password" class="form-control" name="password" placeholder="Informe a Senha">
+                <label for="vencimento">Data de Vemcimento</label>
+                <input type="date" class="form-control" name="vencimento" v-model="$store.state.item.vencimento" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pagamento">Data de Pagamento</label>
+                <input type="date" class="form-control" name="pagamento" v-model="$store.state.item.pagamento">
+            </div>
+        
+            <div class="form-group">
+                <label for="valor">Valor</label>
+                <input type="text" class="form-control" name="valor" v-model="$store.state.item.valor" required>
             </div>
             
         </formulario>
@@ -83,10 +107,14 @@
         </span>
     </modal>
     
-    <modal nome="detalhe" titulo="Detalhe do Usuário">
+    <modal nome="detalhe" titulo="Detalhe da Conta">
 
-        <p><b>Nome: </b>@{{$store.state.item.name}}</p>
-        <p><b>E-Mail: </b> @{{$store.state.item.email}} </p>
+        <p><b>Titulo: </b>@{{$store.state.item.titulo}}</p>
+        <p><b>Descrição: </b> @{{$store.state.item.descricao}} </p>
+        <p><b>Valor: </b> @{{$store.state.item.valor}} </p>
+        <p><b>Vencimento: </b> @{{$store.state.item.vencimento}} </p>
+        <p><b>Pagamento: </b> @{{$store.state.item.pagamento}} </p>
+        <p><b>Valor: </b> @{{$store.state.item.valor}} </p>
 
     </modal>
     
