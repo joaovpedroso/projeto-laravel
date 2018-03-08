@@ -7,7 +7,7 @@ use App\Produto;
 use App\User;
 use App\Conta;
 
-class HomeController extends Controller
+class AdminController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -27,13 +27,13 @@ class HomeController extends Controller
     public function index()
     {
          $listaCaminho = json_encode([
-            ["titulo"=>"Home","url"=>""]
+            ["titulo"=>"Admin","url"=>""]
         ]);
          
          $produtosCount = Produto::all()->count();
          $usuariosCount = User::all()->count();
          $contasCount = Conta::all()->count();
          
-        return view('home', compact('listaCaminho', 'produtosCount','usuariosCount','contasCount'));
+        return view('admin', compact('listaCaminho', 'produtosCount','usuariosCount','contasCount'));
     }
 }

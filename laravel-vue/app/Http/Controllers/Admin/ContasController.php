@@ -17,12 +17,12 @@ class ContasController extends Controller
     public function index()
     {
        $listaCaminho = json_encode([
-            ["titulo"=>"Home","url"=>route('home')],
+            ["titulo"=>"Admin","url"=>route('admin')],
             ["titulo"=>"Lista de Contas","url"=>""]
         ]);
         
         $listaModelo = Conta::select('id','titulo','descricao','vencimento','valor')->paginate(5);
-        
+
         return view('admin.contas.index', compact('listaCaminho', 'listaModelo'));
     }
 

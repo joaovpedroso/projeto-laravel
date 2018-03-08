@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
+
 use App\Produto;
 
 class ProdutosController extends Controller
@@ -17,11 +18,11 @@ class ProdutosController extends Controller
     public function index()
     {
         $listaCaminho = json_encode([
-            ["titulo"=>"Home","url"=>route('home')],
+            ["titulo"=>"Admin","url"=>route('admin')],
             ["titulo"=>"Lista de Produtos","url"=>""]
         ]);
-        
-        $listaProdutos = Produto::select('id','nome','valor')->paginate(5);
+         
+        $listaProdutos = Produto::listaProdutos(5);
         
         return view('admin.produtos.index', compact('listaCaminho', 'listaProdutos'));
     }

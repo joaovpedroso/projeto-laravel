@@ -1,5 +1,5 @@
 <?php
-
+use App\Produto;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,12 +11,30 @@
 |
 */
 
-Route::get('/', 'IndexController@index');
+Route::get('/', 'IndexController@index')->name('site');
+
+Route::get('/produto', function(){
+    return redirect()->route('site');
+});
+Route::get('/produto/{id}/{titulo?}', function($id){
+    if( !$id ){
+        return redirect()->route('site');
+    }else {
+        $produto = Produto::find($id);
+
+        if( $produto ){
+            return view('produto', compact('produto'));
+        }
+        
+        return redirect()->route('site');
+    }
+        
+})->name('produto');
 
 Auth::routes();
 
 //Rota para página Inicial após Login
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'AdminController@index')->name('admin');
 
 //DEFINIR UM GRUPO DE ROTAS PROTEGIDO PELO LOGIN NO SISTEMA
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->group( function(){

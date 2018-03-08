@@ -21,7 +21,7 @@
                        
             <!-- Lista de Registros -->
             <tabela-lista 
-                v-bind:titulos="['ID','Titulo','Descrição','Valor','Data']"
+                v-bind:titulos="['ID','Titulo','Descrição','Data','Valor']"
                 v-bind:itens="{{json_encode( $listaModelo )}}"
                 ordem="asc" ordemcol="1"
                 criar="#criar" detalhe="/admin/contas/" editar="/admin/contas/" deletar="/admin/contas/" token="{{ csrf_token() }}"

@@ -19,5 +19,7 @@
         "vue": "^2.5.7",
         "vuex": "^3.0.1"
     },
-    "dependencies": {}
+    "dependencies": {
+        "vue-ckeditor2": "^1.25.0"
+    }
 }

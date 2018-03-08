@@ -17,7 +17,7 @@ class UsuariosController extends Controller
     public function index()
     {
         $listaCaminho = json_encode([
-            ["titulo"=>"Home","url"=>route('home')],
+            ["titulo"=>"Admin","url"=>route('admin')],
             ["titulo"=>"Lista de Usuários","url"=>""]
         ]);
         

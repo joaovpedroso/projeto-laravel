@@ -7,7 +7,7 @@
         <h3>Produtos</h3>
         
         @foreach($listaProdutos as $produtos => $prod)
-            <item tamanho="3" titulo="{{$prod['nome']}}" valor="{{$prod['valor']}}">
+            <item tamanho="3" titulo="{{$prod['nome']}}" valor="{{$prod['valor']}}" url="{{route('produto',[$prod['id'], str_slug($prod['nome'])] )}}">
                 
             </item>
 
